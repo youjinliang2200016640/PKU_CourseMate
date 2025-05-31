@@ -15,6 +15,7 @@ from course import CourseDetailWindow
 class CourseSearchWindow(QWidget):
     def __init__(self, initial_query="", bg_color=None, parent=None):
         super().__init__()
+        self.parent = parent
         self.bg_color = bg_color or QColor(240, 248, 255)  # 浅蓝色背景
         self.initial_query = initial_query
         self.dataset_path = "./dataset"  # 使用更兼容的路径格式
@@ -125,12 +126,12 @@ class CourseSearchWindow(QWidget):
         )
         
         # 使用父窗口的bg_color
-        parent = self.parent()
+        parent = self.parent
         bg_color = self.bg_color
         if parent and hasattr(parent, 'current_color'):
             bg_color = parent.current_color
         
-        self.children.append(CourseDetailWindow(course_path, bg_color))
+        self.children.append(CourseDetailWindow(course_path, bg_color, self.parent))
         self.children[-1].show()
 
     def update_color(self, color):
