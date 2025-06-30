@@ -4,6 +4,10 @@
 本项目的Demo在如下北大网盘链接链接中
 https://disk.pku.edu.cn/link/AA47130F0333534C88BD1E5C83CE3DC4E7
 
+用户可通过跑 
+> pip install -r requirement.txt \
+> python main.py
+
 
 ## 一、软件功能介绍
 
@@ -16,9 +20,14 @@ https://disk.pku.edu.cn/link/AA47130F0333534C88BD1E5C83CE3DC4E7
 ### 1. 课程查询功能
 
 我们自动化抓取了教务处或选课网开放课表数据，涵盖课程名称、上课单位、时间、地点等信息，您可以通过主页面中的搜索框进行查询。全部数据本地存储，支持离线使用。
-
+<!-- 
 <div align="center">
-<img src="./img/search.png" alt="search" width="60%"/>
+<img src="./img/search.png" alt="search" width="50%"/>
+</div> -->
+
+<div style="display: flex; justify-content: space-around;">
+  <img src="./img/search.png" alt="图1描述" style="width: 45%;">
+  <img src="./img/course.png" alt="图2描述" style="width: 45%;">
 </div>
 
 
@@ -26,26 +35,31 @@ https://disk.pku.edu.cn/link/AA47130F0333534C88BD1E5C83CE3DC4E7
 
 我们还爬取校园论坛和树洞中的课程历史测评数据，使用大语言模型进行课程提炼，包括教学质量、任务强度、评分情况等，并在界面中使用词云图形化展示课程画像。
 
-<div align="center">
+<!-- <div align="center">
 <img src="./img/course.png" alt="course" width="60%"/>
-</div>
+</div> -->
 
 
 ### 3. 课表预览功能
 
 在每门课课程信息下面有加入课表功能，在主页面点击我的课表即可看到现在加入课表的课程以及其基本信息，双击或者点击删除课程即可删除课程。
 
-<div align="center">
+<!-- <div align="center">
 <img src="./img/table.png" alt="table" width="60%"/>
+</div> -->
+
+<div style="display: flex; justify-content: space-around;">
+  <img src="./img/table.png" alt="图1描述" style="width: 45%;">
+  <img src="./img/AI.png" alt="图2描述" style="width: 45%;">
 </div>
 
 ### 4.选课智能建议模块
 
 我们在软件中加入了deepseek的API，可以帮助用户基于测评分析结果，综合课程特征（如适合人群、给分难度、任务形式）提供课程推荐，课程信息介绍和课程指南功能。
 
-<div align="center">
+<!-- <div align="center">
 <img src="./img/AI.png" alt="AI" width="60%"/>
-</div>
+</div> -->
 
 ## 二、各模块与类设计细节
 
@@ -82,11 +96,11 @@ https://disk.pku.edu.cn/link/AA47130F0333534C88BD1E5C83CE3DC4E7
 
 **核心函数**：
 
-| 函数名           | 参数         | 功能               |
-|------------------|--------------|--------------------|
-| `fetch_all()`    | `year, term` | 抓取指定学期课表   |
-| `parse_table()`  | `html_table` | 解析网页表格为字典 |
-| `save_course()`  | `data`       | 存储为CSV与JSON    |
+| 函数名          | 参数         | 功能               |
+| --------------- | ------------ | ------------------ |
+| `fetch_all()`   | `year, term` | 抓取指定学期课表   |
+| `parse_table()` | `html_table` | 解析网页表格为字典 |
+| `save_course()` | `data`       | 存储为CSV与JSON    |
 
 
 #### 2. `get_treehole.py`（树洞测评抓取）
@@ -100,11 +114,11 @@ https://disk.pku.edu.cn/link/AA47130F0333534C88BD1E5C83CE3DC4E7
 
 **核心函数**：
 
-| 函数名                 | 参数         | 功能                   |
-|------------------------|--------------|------------------------|
-| `fetch_treehole()`     | `keywords`   | 获取课程关键词相关发言 |
-| `filter_course_posts()`| `posts`      | 过滤非课程内容         |
-| `save_evaluations()`   | `results`    | 存储每门课的测评文本   |
+| 函数名                  | 参数       | 功能                   |
+| ----------------------- | ---------- | ---------------------- |
+| `fetch_treehole()`      | `keywords` | 获取课程关键词相关发言 |
+| `filter_course_posts()` | `posts`    | 过滤非课程内容         |
+| `save_evaluations()`    | `results`  | 存储每门课的测评文本   |
 
 
 #### 3. `LLM.py`（大模型课程总结）
@@ -118,11 +132,11 @@ https://disk.pku.edu.cn/link/AA47130F0333534C88BD1E5C83CE3DC4E7
 
 **核心类与函数**：
 
-| 名称                  | 说明                                |
-|-----------------------|-------------------------------------|
-| `LLMProcessor`        | 封装模型调用逻辑与课程摘要构造流程 |
-| `summarize_course()`  | 读取课程测评 → 构造提示词 → 输出摘要 |
-| `save_summary_md()`   | 输出为 Markdown 文件，便于展示    |
+| 名称                 | 说明                                 |
+| -------------------- | ------------------------------------ |
+| `LLMProcessor`       | 封装模型调用逻辑与课程摘要构造流程   |
+| `summarize_course()` | 读取课程测评 → 构造提示词 → 输出摘要 |
+| `save_summary_md()`  | 输出为 Markdown 文件，便于展示       |
 
 
 #### 4. `make.py`（数据处理调度）
