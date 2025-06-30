@@ -130,7 +130,6 @@ class ChatAssistantWindow(QWidget):
         # 添加提示消息
         self.append_message("🤖 DeepSeek", "你好！我是选课助手，我已了解所有课程信息，我可以帮助你分析课程、制定学习计划。请问有什么可以帮您的？")
 
-
     def update_color(self, color):
         palette = self.palette()
         palette.setColor(QPalette.Window, color)
@@ -176,7 +175,6 @@ class ChatAssistantWindow(QWidget):
         error_msg = f"请求失败：{error}"
         self.append_message("⚠️ 系统", error_msg)
         QMessageBox.warning(self, "请求错误", error_msg)
-
 
 # API调用线程
 class APIWorker(QThread):

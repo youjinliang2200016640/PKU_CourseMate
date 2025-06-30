@@ -520,6 +520,7 @@ class CourseTableWindow(QWidget):
         palette = self.palette()
         palette.setColor(QPalette.Window, color)
         self.setPalette(palette)
+
 if __name__ == "__main__":
     
     app = QApplication(sys.argv)
