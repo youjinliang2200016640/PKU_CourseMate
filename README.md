@@ -1,6 +1,9 @@
 # PKU_CourseMate
+## 零、Demo链接
 
-# PKUCourseMate·北大课程管家项目报告
+本项目的Demo在如下北大网盘链接链接中
+https://disk.pku.edu.cn/link/AA47130F0333534C88BD1E5C83CE3DC4E7
+
 
 ## 一、软件功能介绍
 
